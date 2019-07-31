@@ -1,0 +1,11 @@
+Evaluate
+ Summarize (
+	'銷售明細'
+		  , '銷售日別'[年度]
+		  , '產品別'[產品大類]
+		  , "總銷售金額", Format(Sum('銷售明細'[銷售金額]),"#,###")
+		  , "年度總銷售金額", Format(Calculate(Sum('銷售明細'[銷售金額]),AllExcept('銷售明細','銷售日別'[年度])),"#,###")
+		  , "銷售金額%", Format(Sum('銷售明細'[銷售金額])/Calculate(Sum('銷售明細'[銷售金額]),AllExcept('銷售明細','銷售日別'[年度])),"#.##%")
+		  , "去重複客戶數", Format(DistinctCount('客戶別'[CustomerId]),"#,###")
+		   )
+ Order by '銷售日別'[年度],'產品別'[產品大類]

@@ -1,0 +1,20 @@
+Evaluate
+ TopN(10,
+ Summarize (
+	CalculateTable('銷售明細','銷售日別'[年度]=2013)
+		  , '產品別'[產品名稱]
+		  , "毛利率", Format( [毛利率] ,"#.##%")
+		   )
+ ,[毛利率])
+ Order by [毛利率] Desc
+
+
+Evaluate
+ TopN(10,
+ Summarize (
+	CalculateTable('銷售明細','銷售日別'[年度]=2013)
+		  , '產品別'[產品名稱]
+		  , "毛利率", Format( [毛利率] ,"#.##%")
+		   )
+ ,[毛利率],1)
+ Order by [毛利率] 
