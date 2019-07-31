@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition">
+  <DataSet Name="">
+    <Query>
+      <DataSourceReference>SSRS</DataSourceReference>
+      <CommandText>SELECT [GIS_KEY]
+      ,[CITY_NAME]
+      ,[SALES_AMT]
+      ,[MARGIN_RATE]
+  FROM [ASIAMINER_SSRS].[dbo].[MAP_DATA]</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="GIS_KEY">
+        <DataField>GIS_KEY</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="CITY_NAME">
+        <DataField>CITY_NAME</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="SALES_AMT">
+        <DataField>SALES_AMT</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="MARGIN_RATE">
+        <DataField>MARGIN_RATE</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

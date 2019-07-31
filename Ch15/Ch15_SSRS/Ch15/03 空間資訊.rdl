@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="SSRS">
+      <DataSourceReference>SSRS</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>6f71a72d-4d22-4ff4-8cd2-89df6b80b1d5</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="台北市各分店銷售狀況">
+      <SharedDataSet>
+        <SharedDataSetReference>台北市各分店銷售狀況</SharedDataSetReference>
+      </SharedDataSet>
+      <Fields>
+        <Field Name="StoreName">
+          <DataField>StoreName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Location">
+          <DataField>Location</DataField>
+          <rd:TypeName>Microsoft.SqlServer.Types.SqlGeometry</rd:TypeName>
+        </Field>
+        <Field Name="TotalSales">
+          <DataField>TotalSales</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="MarginRate">
+          <DataField>MarginRate</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Map Name="Map2">
+            <MapViewport>
+              <MapCoordinateSystem>Geographic</MapCoordinateSystem>
+              <MapProjection>Mercator</MapProjection>
+              <ProjectionCenterX>NaN</ProjectionCenterX>
+              <ProjectionCenterY>NaN</ProjectionCenterY>
+              <MapLimits>
+                <MinimumX>NaN</MinimumX>
+                <MinimumY>NaN</MinimumY>
+                <MaximumX>NaN</MaximumX>
+                <MaximumY>NaN</MaximumY>
+              </MapLimits>
+              <MaximumZoom>4000000</MaximumZoom>
+              <MapCustomView>
+                <CenterX>54.6649398803711</CenterX>
+                <CenterY>45.8588256835938</CenterY>
+                <Zoom>121</Zoom>
+              </MapCustomView>
+              <MapMeridians>
+                <Style>
+                  <Border>
+                    <Color>#c08080ff</Color>
+                    <Style>None</Style>
+                  </Border>
+                  <FontSize>8pt</FontSize>
+                  <Format>#°E;#°W;0°</Format>
+                  <Color>#c08080ff</Color>
+                </Style>
+                <Hidden>true</Hidden>
+                <Interval>NaN</Interval>
+                <ShowLabels>true</ShowLabels>
+              </MapMeridians>
+              <MapParallels>
+                <Style>
+                  <Border>
+                    <Color>#c08080ff</Color>
+                    <Style>None</Style>
+                  </Border>
+                  <FontSize>8pt</FontSize>
+                  <Format>#°N;#°S;0°</Format>
+                  <Color>#c08080ff</Color>
+                </Style>
+                <Hidden>true</Hidden>
+                <Interval>NaN</Interval>
+                <ShowLabels>true</ShowLabels>
+              </MapParallels>
+              <GridUnderContent>false</GridUnderContent>
+              <Style>
+                <Border>
+                  <Color>Gray</Color>
+                  <Style>Solid</Style>
+                </Border>
+                <BackgroundColor>White</BackgroundColor>
+                <BackgroundGradientType>DiagonalLeft</BackgroundGradientType>
+                <BackgroundGradientEndColor>Gainsboro</BackgroundGradientEndColor>
+                <ShadowOffset>1pt</ShadowOffset>
+              </Style>
+              <LeftMargin>2pt</LeftMargin>
+              <RightMargin>2pt</RightMargin>
+              <TopMargin>2pt</TopMargin>
+              <BottomMargin>2pt</BottomMargin>
+            </MapViewport>
+            <MapDataRegions>
+              <MapDataRegion Name="Map2_PointLayer1_DataRegion">
+                <DataSetName>台北市各分店銷售狀況</DataSetName>
+                <MapMember>
+                  <Group Name="Map2_PointLayer1_Group" />
+                </MapMember>
+              </MapDataRegion>
+            </MapDataRegions>
+            <MapLayers>
+              <MapTileLayer Name="TileLayer1">
+                <UseSecureConnection>false</UseSecureConnection>
+              </MapTileLayer>
+              <MapPointLayer Name="PointLayer1">
+                <MapMarkerTemplate>
+                  <MapMarker>
+                    <MapMarkerStyle>Circle</MapMarkerStyle>
+                  </MapMarker>
+                  <Size>10pt</Size>
+                  <Style>
+                    <Border>
+                      <Color>Gray</Color>
+                      <Style>Solid</Style>
+                    </Border>
+                    <BackgroundColor>White</BackgroundColor>
+                    <BackgroundGradientType>None</BackgroundGradientType>
+                    <BackgroundGradientEndColor>LightGrey</BackgroundGradientEndColor>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                  <Label>=Fields!StoreName.Value</Label>
+                </MapMarkerTemplate>
+                <MapPointRules>
+                  <MapSizeRule>
+                    <StartSize>5pt</StartSize>
+                    <EndSize>30pt</EndSize>
+                    <DataValue>=Sum(Fields!TotalSales.Value)</DataValue>
+                    <StartValue />
+                    <EndValue />
+                    <LegendName />
+                    <LegendText>#FROMVALUE{N0} - #TOVALUE{N0}</LegendText>
+                  </MapSizeRule>
+                  <MapColorRangeRule>
+                    <ShowInColorScale>true</ShowInColorScale>
+                    <DataValue>=Sum(Fields!MarginRate.Value)</DataValue>
+                    <BucketCount>10</BucketCount>
+                    <StartValue />
+                    <EndValue />
+                    <LegendName />
+                    <LegendText>#FROMVALUE{N0} - #TOVALUE{N0}</LegendText>
+                  </MapColorRangeRule>
+                </MapPointRules>
+                <MapDataRegionName>Map2_PointLayer1_DataRegion</MapDataRegionName>
+                <MapSpatialDataRegion>
+                  <VectorData>=Fields!Location.Value</VectorData>
+                </MapSpatialDataRegion>
+                <Transparency>40</Transparency>
+              </MapPointLayer>
+            </MapLayers>
+            <MapTitles>
+              <MapTitle Name="Title1">
+                <Text>地圖標題</Text>
+                <Angle>NaN</Angle>
+                <TextShadowOffset>0pt</TextShadowOffset>
+                <DockOutsideViewport>true</DockOutsideViewport>
+                <Style>
+                  <Border>
+                    <Color>Gray</Color>
+                    <Style>None</Style>
+                  </Border>
+                  <BackgroundColor>#00ffffff</BackgroundColor>
+                  <BackgroundGradientType>None</BackgroundGradientType>
+                  <BackgroundGradientEndColor>Gainsboro</BackgroundGradientEndColor>
+                  <FontWeight>Bold</FontWeight>
+                  <TextAlign>Center</TextAlign>
+                  <ShadowOffset>0pt</ShadowOffset>
+                </Style>
+                <LeftMargin>2pt</LeftMargin>
+                <RightMargin>2pt</RightMargin>
+                <TopMargin>2pt</TopMargin>
+                <BottomMargin>2pt</BottomMargin>
+              </MapTitle>
+            </MapTitles>
+            <MapDistanceScale>
+              <ScaleBorderColor>Gray</ScaleBorderColor>
+              <Position>RightBottom</Position>
+              <DockOutsideViewport>false</DockOutsideViewport>
+              <Style>
+                <Border>
+                  <Color>Gray</Color>
+                  <Style>Solid</Style>
+                </Border>
+                <BackgroundColor>White</BackgroundColor>
+                <BackgroundGradientType>DiagonalLeft</BackgroundGradientType>
+                <BackgroundGradientEndColor>Gainsboro</BackgroundGradientEndColor>
+                <FontSize>8pt</FontSize>
+                <ShadowOffset>1pt</ShadowOffset>
+              </Style>
+              <MapSize>
+                <Width>80</Width>
+                <Height>40</Height>
+                <Unit>Point</Unit>
+              </MapSize>
+              <LeftMargin>2pt</LeftMargin>
+              <RightMargin>2pt</RightMargin>
+              <TopMargin>2pt</TopMargin>
+              <BottomMargin>2pt</BottomMargin>
+            </MapDistanceScale>
+            <MapColorScale>
+              <MapColorScaleTitle>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+                <Caption />
+              </MapColorScaleTitle>
+              <ColorBarBorderColor>Gray</ColorBarBorderColor>
+              <LabelFormat>#,##0.##</LabelFormat>
+              <HideEndLabels>false</HideEndLabels>
+              <NoDataText>無資料</NoDataText>
+              <Position>LeftBottom</Position>
+              <DockOutsideViewport>false</DockOutsideViewport>
+              <Style>
+                <Border>
+                  <Color>Gray</Color>
+                  <Style>Solid</Style>
+                </Border>
+                <BackgroundColor>White</BackgroundColor>
+                <BackgroundGradientType>DiagonalLeft</BackgroundGradientType>
+                <BackgroundGradientEndColor>Gainsboro</BackgroundGradientEndColor>
+                <FontSize>8pt</FontSize>
+                <ShadowOffset>1pt</ShadowOffset>
+              </Style>
+              <LeftMargin>2pt</LeftMargin>
+              <RightMargin>2pt</RightMargin>
+              <TopMargin>2pt</TopMargin>
+              <BottomMargin>2pt</BottomMargin>
+            </MapColorScale>
+            <MapBorderSkin>
+              <Style>
+                <Border />
+                <BackgroundColor>Gray</BackgroundColor>
+                <BackgroundGradientType>None</BackgroundGradientType>
+                <BackgroundGradientEndColor>White</BackgroundGradientEndColor>
+                <Color>White</Color>
+              </Style>
+            </MapBorderSkin>
+            <Top>0.47307cm</Top>
+            <Left>0.57891cm</Left>
+            <Height>18.83708cm</Height>
+            <Width>22.85812cm</Width>
+            <Style>
+              <Border>
+                <Color>Gray</Color>
+                <Style>None</Style>
+              </Border>
+              <BackgroundColor>White</BackgroundColor>
+              <BackgroundGradientType>None</BackgroundGradientType>
+              <BackgroundGradientEndColor>White</BackgroundGradientEndColor>
+            </Style>
+          </Map>
+        </ReportItems>
+        <Height>11.19617in</Height>
+        <Style />
+      </Body>
+      <Width>9.22718in</Width>
+      <Page>
+        <PageHeight>29.7cm</PageHeight>
+        <PageWidth>21cm</PageWidth>
+        <LeftMargin>2cm</LeftMargin>
+        <RightMargin>2cm</RightMargin>
+        <TopMargin>2cm</TopMargin>
+        <BottomMargin>2cm</BottomMargin>
+        <ColumnSpacing>0.13cm</ColumnSpacing>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>9ee970a9-d889-40c9-b9b0-1507571911a4</rd:ReportID>
+</Report>

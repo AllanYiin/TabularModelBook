@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "PPS_Report", "PPS_Report\PPS_Report.rptproj", "{086ACBDD-55B7-42E9-AACA-F203507A581B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{086ACBDD-55B7-42E9-AACA-F203507A581B}.Debug|Default.ActiveCfg = Debug
+		{086ACBDD-55B7-42E9-AACA-F203507A581B}.Debug|Default.Build.0 = DebugLocal
+		{086ACBDD-55B7-42E9-AACA-F203507A581B}.Debug|Default.Deploy.0 = DebugLocal
+		{086ACBDD-55B7-42E9-AACA-F203507A581B}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{086ACBDD-55B7-42E9-AACA-F203507A581B}.DebugLocal|Default.Build.0 = DebugLocal
+		{086ACBDD-55B7-42E9-AACA-F203507A581B}.Release|Default.ActiveCfg = Release
+		{086ACBDD-55B7-42E9-AACA-F203507A581B}.Release|Default.Build.0 = Release
+		{086ACBDD-55B7-42E9-AACA-F203507A581B}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

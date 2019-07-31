@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="SSRS">
+      <DataSourceReference>SSRS</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>d9b8e13a-2c8e-4c5d-8f51-742ff3c11f08</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="計算點">
+      <Query>
+        <DataSourceName>SSRS</DataSourceName>
+        <CommandText>DECLARE @g geometry;
+SET @g = (SELECT GeomCol1 FROM SpatialTable WHERE GEODESC='信義區責任區');
+
+SELECT --那些點是否在多邊形裡面
+GeomCol1 as geo_info,
+GEODESC as store_name
+FROM SpatialTable 
+WHERE 
+GeomCol1.STArea()=0   --面積為零，為"點"
+AND GeomCol1.STWithin(@g)=1  --這個點存在信義責任區中</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="geo_info">
+          <DataField>geo_info</DataField>
+          <rd:TypeName>Microsoft.SqlServer.Types.SqlGeometry</rd:TypeName>
+        </Field>
+        <Field Name="store_name">
+          <DataField>store_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="信義區責任區">
+      <Query>
+        <DataSourceName>SSRS</DataSourceName>
+        <CommandText>
+SELECT 
+GeomCol1 as area,
+GEODESC as area_name
+FROM msdb.dbo.SpatialTable WHERE GEODESC='信義區責任區'</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="area">
+          <DataField>area</DataField>
+          <rd:TypeName>Microsoft.SqlServer.Types.SqlGeometry</rd:TypeName>
+        </Field>
+        <Field Name="area_name">
+          <DataField>area_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="計算圓範圍">
+      <Query>
+        <DataSourceName>SSRS</DataSourceName>
+        <CommandText>
+
+DECLARE @TAIPEI101 geometry;
+
+SET  @TAIPEI101 =
+(SELECT 
+GeomCol1.STBuffer(0.0051) as circle1
+FROM SpatialTable 
+WHERE GEODESC='台北101')
+
+SELECT  @TAIPEI101  AS circle1</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="CIRCLE1">
+          <DataField>circle1</DataField>
+          <rd:TypeName>Microsoft.SqlServer.Types.SqlGeometry</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Map Name="Map3">
+            <MapViewport>
+              <MapCoordinateSystem>Geographic</MapCoordinateSystem>
+              <MapProjection>Mercator</MapProjection>
+              <ProjectionCenterX>NaN</ProjectionCenterX>
+              <ProjectionCenterY>NaN</ProjectionCenterY>
+              <MapLimits>
+                <MinimumX>NaN</MinimumX>
+                <MinimumY>NaN</MinimumY>
+                <MaximumX>NaN</MaximumX>
+                <MaximumY>NaN</MaximumY>
+              </MapLimits>
+              <MaximumZoom>4000000</MaximumZoom>
+              <MapCustomView>
+                <CenterY>50.1971702575684</CenterY>
+                <Zoom>100</Zoom>
+              </MapCustomView>
+              <MapMeridians>
+                <Style>
+                  <Border>
+                    <Color>LightGrey</Color>
+                    <Style>None</Style>
+                  </Border>
+                  <FontFamily>Tahoma</FontFamily>
+                  <FontSize>8pt</FontSize>
+                  <Format>#°E;#°W;0°</Format>
+                  <Color>DarkGray</Color>
+                </Style>
+                <Hidden>true</Hidden>
+                <Interval>NaN</Interval>
+                <ShowLabels>true</ShowLabels>
+              </MapMeridians>
+              <MapParallels>
+                <Style>
+                  <Border>
+                    <Color>LightGrey</Color>
+                    <Style>None</Style>
+                  </Border>
+                  <FontFamily>Tahoma</FontFamily>
+                  <FontSize>8pt</FontSize>
+                  <Format>#°N;#°S;0°</Format>
+                  <Color>DarkGray</Color>
+                </Style>
+                <Hidden>true</Hidden>
+                <Interval>NaN</Interval>
+                <ShowLabels>true</ShowLabels>
+              </MapParallels>
+              <GridUnderContent>false</GridUnderContent>
+              <Style>
+                <Border>
+                  <Color>#7292cc</Color>
+                  <Style>Solid</Style>
+                </Border>
+                <BackgroundColor>#e6eefc</BackgroundColor>
+                <BackgroundGradientType>None</BackgroundGradientType>
+                <BackgroundGradientEndColor>#c6daf8</BackgroundGradientEndColor>
+                <ShadowOffset>1pt</ShadowOffset>
+              </Style>
+              <LeftMargin>2pt</LeftMargin>
+              <RightMargin>2pt</RightMargin>
+              <TopMargin>2pt</TopMargin>
+              <BottomMargin>2pt</BottomMargin>
+            </MapViewport>
+            <MapDataRegions>
+              <MapDataRegion Name="Map3_PolygonLayer1_DataRegion">
+                <DataSetName>信義區責任區</DataSetName>
+                <MapMember>
+                  <Group Name="Map3_PolygonLayer1_Group" />
+                </MapMember>
+              </MapDataRegion>
+            </MapDataRegions>
+            <MapLayers>
+              <MapTileLayer Name="TileLayer1">
+                <UseSecureConnection>false</UseSecureConnection>
+              </MapTileLayer>
+              <MapPolygonLayer Name="PolygonLayer1">
+                <MapPolygonTemplate>
+                  <Style>
+                    <Border>
+                      <Color>Gray</Color>
+                      <Style>Solid</Style>
+                    </Border>
+                    <BackgroundColor>#4c68a2</BackgroundColor>
+                    <BackgroundGradientType>None</BackgroundGradientType>
+                    <BackgroundGradientEndColor>LightGrey</BackgroundGradientEndColor>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </MapPolygonTemplate>
+                <MapPolygonRules />
+                <MapMarkerTemplate>
+                  <MapMarker>
+                    <MapMarkerStyle>Circle</MapMarkerStyle>
+                  </MapMarker>
+                  <Size>10pt</Size>
+                  <Style>
+                    <Border>
+                      <Color>Gray</Color>
+                      <Style>Solid</Style>
+                    </Border>
+                    <BackgroundColor>White</BackgroundColor>
+                    <BackgroundGradientType>None</BackgroundGradientType>
+                    <BackgroundGradientEndColor>LightGrey</BackgroundGradientEndColor>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                  <Hidden>true</Hidden>
+                </MapMarkerTemplate>
+                <MapCenterPointRules />
+                <MapDataRegionName>Map3_PolygonLayer1_DataRegion</MapDataRegionName>
+                <MapSpatialDataRegion>
+                  <VectorData>=Fields!area.Value</VectorData>
+                </MapSpatialDataRegion>
+                <Transparency>40</Transparency>
+              </MapPolygonLayer>
+              <MapPointLayer Name="PointLayer1">
+                <MapMarkerTemplate>
+                  <MapMarker>
+                    <MapMarkerStyle>Circle</MapMarkerStyle>
+                  </MapMarker>
+                  <Size>15pt</Size>
+                  <Style>
+                    <Border>
+                      <Color>Gray</Color>
+                      <Style>Solid</Style>
+                    </Border>
+                    <BackgroundColor>Maroon</BackgroundColor>
+                    <BackgroundGradientType>None</BackgroundGradientType>
+                    <BackgroundGradientEndColor>LightGrey</BackgroundGradientEndColor>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                  <Label>#store_name</Label>
+                  <ToolTip>#store_name</ToolTip>
+                </MapMarkerTemplate>
+                <MapPointRules />
+                <MapSpatialDataSet>
+                  <DataSetName>計算點</DataSetName>
+                  <SpatialField>geo_info</SpatialField>
+                  <MapFieldNames>
+                    <MapFieldName>store_name</MapFieldName>
+                  </MapFieldNames>
+                </MapSpatialDataSet>
+              </MapPointLayer>
+              <MapPolygonLayer Name="PolygonLayer2">
+                <MapPolygonTemplate>
+                  <Style>
+                    <Border>
+                      <Color>DarkBlue</Color>
+                      <Style>Solid</Style>
+                    </Border>
+                    <BackgroundColor>#9e0000ff</BackgroundColor>
+                    <BackgroundGradientType>Center</BackgroundGradientType>
+                    <BackgroundGradientEndColor>#a8d3d3d3</BackgroundGradientEndColor>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </MapPolygonTemplate>
+                <MapPolygonRules>
+                  <MapColorRangeRule>
+                    <StartColor>#94006400</StartColor>
+                    <MiddleColor>#78ffff00</MiddleColor>
+                    <EndColor>#94006400</EndColor>
+                    <ShowInColorScale>false</ShowInColorScale>
+                    <StartValue />
+                    <EndValue />
+                    <LegendText>#FROMVALUE{N0} - #TOVALUE{N0}</LegendText>
+                  </MapColorRangeRule>
+                </MapPolygonRules>
+                <MapMarkerTemplate>
+                  <MapMarker>
+                    <MapMarkerStyle>Circle</MapMarkerStyle>
+                  </MapMarker>
+                  <Size>10pt</Size>
+                  <Style>
+                    <Border>
+                      <Color>Gray</Color>
+                      <Style>Solid</Style>
+                    </Border>
+                    <BackgroundColor>#e0ffffff</BackgroundColor>
+                    <BackgroundGradientType>None</BackgroundGradientType>
+                    <BackgroundGradientEndColor>LightGrey</BackgroundGradientEndColor>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                  <Hidden>true</Hidden>
+                </MapMarkerTemplate>
+                <MapCenterPointRules />
+                <MapSpatialDataSet>
+                  <DataSetName>計算圓範圍</DataSetName>
+                  <SpatialField>CIRCLE1</SpatialField>
+                </MapSpatialDataSet>
+              </MapPolygonLayer>
+            </MapLayers>
+            <MapLegends>
+              <MapLegend Name="Legend1">
+                <MapLegendTitle>
+                  <Style>
+                    <BackgroundColor>#00ffffff</BackgroundColor>
+                    <FontFamily>Tahoma</FontFamily>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                  <Caption>標題</Caption>
+                </MapLegendTitle>
+                <AutoFitTextDisabled>false</AutoFitTextDisabled>
+                <InterlacedRows>false</InterlacedRows>
+                <EquallySpacedItems>false</EquallySpacedItems>
+                <Position>RightTop</Position>
+                <DockOutsideViewport>true</DockOutsideViewport>
+                <Style>
+                  <Border>
+                    <Color>#7292cc</Color>
+                    <Style>Solid</Style>
+                  </Border>
+                  <BackgroundColor>#e6eefc</BackgroundColor>
+                  <BackgroundGradientType>TopBottom</BackgroundGradientType>
+                  <BackgroundGradientEndColor>#c6daf8</BackgroundGradientEndColor>
+                  <FontFamily>Tahoma</FontFamily>
+                  <FontSize>8pt</FontSize>
+                  <ShadowOffset>1pt</ShadowOffset>
+                </Style>
+                <LeftMargin>2pt</LeftMargin>
+                <RightMargin>2pt</RightMargin>
+                <TopMargin>2pt</TopMargin>
+                <BottomMargin>2pt</BottomMargin>
+              </MapLegend>
+            </MapLegends>
+            <MapTitles>
+              <MapTitle Name="Title1">
+                <Text>地圖標題</Text>
+                <Angle>NaN</Angle>
+                <TextShadowOffset>0pt</TextShadowOffset>
+                <DockOutsideViewport>true</DockOutsideViewport>
+                <Style>
+                  <Border>
+                    <Color>#7292cc</Color>
+                    <Style>None</Style>
+                  </Border>
+                  <BackgroundColor>#00ffffff</BackgroundColor>
+                  <BackgroundGradientType>None</BackgroundGradientType>
+                  <BackgroundGradientEndColor>Gainsboro</BackgroundGradientEndColor>
+                  <FontFamily>Tahoma</FontFamily>
+                  <FontSize>14pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextAlign>Center</TextAlign>
+                  <ShadowOffset>0pt</ShadowOffset>
+                </Style>
+                <LeftMargin>2pt</LeftMargin>
+                <RightMargin>2pt</RightMargin>
+                <TopMargin>2pt</TopMargin>
+                <BottomMargin>2pt</BottomMargin>
+              </MapTitle>
+            </MapTitles>
+            <MapDistanceScale>
+              <ScaleBorderColor>Gray</ScaleBorderColor>
+              <Position>RightBottom</Position>
+              <DockOutsideViewport>false</DockOutsideViewport>
+              <Style>
+                <Border>
+                  <Color>#7292cc</Color>
+                  <Style>Solid</Style>
+                </Border>
+                <BackgroundColor>#e6eefc</BackgroundColor>
+                <BackgroundGradientType>TopBottom</BackgroundGradientType>
+                <BackgroundGradientEndColor>#c6daf8</BackgroundGradientEndColor>
+                <FontFamily>Tahoma</FontFamily>
+                <FontSize>8pt</FontSize>
+                <ShadowOffset>1pt</ShadowOffset>
+              </Style>
+              <MapSize>
+                <Width>80</Width>
+                <Height>40</Height>
+                <Unit>Point</Unit>
+              </MapSize>
+              <LeftMargin>2pt</LeftMargin>
+              <RightMargin>2pt</RightMargin>
+              <TopMargin>2pt</TopMargin>
+              <BottomMargin>2pt</BottomMargin>
+            </MapDistanceScale>
+            <MapColorScale>
+              <MapColorScaleTitle>
+                <Style>
+                  <FontFamily>Tahoma</FontFamily>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+                <Caption />
+              </MapColorScaleTitle>
+              <ColorBarBorderColor>Gray</ColorBarBorderColor>
+              <LabelFormat>#,##0.##</LabelFormat>
+              <HideEndLabels>false</HideEndLabels>
+              <NoDataText>無資料</NoDataText>
+              <Position>LeftBottom</Position>
+              <DockOutsideViewport>false</DockOutsideViewport>
+              <Style>
+                <Border>
+                  <Color>#7292cc</Color>
+                  <Style>Solid</Style>
+                </Border>
+                <BackgroundColor>#e6eefc</BackgroundColor>
+                <BackgroundGradientType>TopBottom</BackgroundGradientType>
+                <BackgroundGradientEndColor>#c6daf8</BackgroundGradientEndColor>
+                <FontFamily>Tahoma</FontFamily>
+                <FontSize>8pt</FontSize>
+                <ShadowOffset>1pt</ShadowOffset>
+              </Style>
+              <LeftMargin>2pt</LeftMargin>
+              <RightMargin>2pt</RightMargin>
+              <TopMargin>2pt</TopMargin>
+              <BottomMargin>2pt</BottomMargin>
+            </MapColorScale>
+            <MapBorderSkin>
+              <Style>
+                <Border />
+                <BackgroundColor>Gray</BackgroundColor>
+                <BackgroundGradientType>None</BackgroundGradientType>
+                <BackgroundGradientEndColor>White</BackgroundGradientEndColor>
+                <Color>White</Color>
+              </Style>
+              <MapBorderSkinType>Emboss</MapBorderSkinType>
+            </MapBorderSkin>
+            <Top>3.09245cm</Top>
+            <Left>1.08162cm</Left>
+            <Height>11.61396cm</Height>
+            <Width>17.43417cm</Width>
+            <Style>
+              <Border>
+                <Color>#7292cc</Color>
+                <Style>Solid</Style>
+                <Width>2pt</Width>
+              </Border>
+              <BackgroundColor>#c6daf8</BackgroundColor>
+              <BackgroundGradientType>TopBottom</BackgroundGradientType>
+              <BackgroundGradientEndColor>#e6eefc</BackgroundGradientEndColor>
+            </Style>
+          </Map>
+          <Textbox Name="Textbox1">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>信義區責任區的地點數</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>6.98183cm</Top>
+            <Left>19.62891cm</Left>
+            <Height>0.6cm</Height>
+            <Width>4.43146cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox2">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Count(Fields!store_name.Value, "DataSet2")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox2</rd:DefaultName>
+            <Top>7.65238cm</Top>
+            <Left>19.62891cm</Left>
+            <Height>0.6cm</Height>
+            <Width>2.5cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <Height>8.26909in</Height>
+        <Style />
+      </Body>
+      <Width>11.34176in</Width>
+      <Page>
+        <PageHeight>29.7cm</PageHeight>
+        <PageWidth>21cm</PageWidth>
+        <LeftMargin>2cm</LeftMargin>
+        <RightMargin>2cm</RightMargin>
+        <TopMargin>2cm</TopMargin>
+        <BottomMargin>2cm</BottomMargin>
+        <ColumnSpacing>0.13cm</ColumnSpacing>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>5fb30bba-9808-48e8-996e-623975912db2</rd:ReportID>
+</Report>

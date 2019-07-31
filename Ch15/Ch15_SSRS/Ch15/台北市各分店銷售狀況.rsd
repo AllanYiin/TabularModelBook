@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition">
+  <DataSet Name="">
+    <Query>
+      <DataSourceReference>SSRS</DataSourceReference>
+      <CommandText>Select 
+  [StoreName]
+  ,Geometry::STGeomFromText('POINT ('+Cast([STX] as varchar)+' '+Cast([STY] as Varchar)+')',0) as Location
+  ,TotalSales
+  ,MarginRate
+  from [ASIAMINER_BI20].[dbo].[Stores] a
+  Left Join 
+  (
+     Select  [StoreId]
+      ,Sum([SalesAmount]) as TotalSales
+      ,(Sum([SalesAmount])-Sum([ProductCost]))/Cast(Sum([SalesAmount]) as Numeric(18,2)) as MarginRate
+     from [ASIAMINER_BI20].[dbo].[TrxDetails]
+     Group by  [StoreId]
+  ) b
+  on a.[StoreId]=b.[StoreId]
+  Where [AdministrativeAreaName]='台北市'</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="StoreName">
+        <DataField>StoreName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Location">
+        <DataField>Location</DataField>
+        <rd:TypeName>Microsoft.SqlServer.Types.SqlGeometry</rd:TypeName>
+      </Field>
+      <Field Name="TotalSales">
+        <DataField>TotalSales</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="MarginRate">
+        <DataField>MarginRate</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>
