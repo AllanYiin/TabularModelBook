@@ -1,0 +1,20 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Shared Tools\Web Server Extensions\14.0]
+"SharePoint"="Installed"
+"Location"="C:\\Program Files\\Common Files\\Microsoft Shared\\Web Server Extensions\\14\\"
+"UsingUIInstallMode"=dword:00000001
+"BinPath"="C:\\Program Files\\Microsoft Office\\Office14\\"
+"ServerId"="f44ebd3f-4855-4765-8223-c015258194ad"
+"Version"="14.0.0.6112"
+"AdminServerLocation"="1227812612"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Shared Tools\Web Server Extensions\14.0\Secure\ConfigDB]
+"dsn"="ok"
+"Id"="ef16bb8a-3385-45fe-b53a-9dee7a3c15f5"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Shared Tools\Web Server Extensions\14.0\WSS\InstalledProducts]
+"{90140000-1014-0000-1000-0000000FF1CE}"="BEED1F75-C398-4447-AEF1-E66E1F0DF91E"
+"{90140000-110D-0000-1000-0000000FF1CE}"="D5595F62-449B-4061-B0B2-0CBAD410BB51"
+"{90140000-112D-0000-1000-0000000FF1CE}"="926E4E17-087B-47D1-8BD7-91A394BC6196"
+"{90140000-110F-0000-1000-0000000FF1CE}"="ED21638F-97FF-4A65-AD9B-6889B93065E2"
