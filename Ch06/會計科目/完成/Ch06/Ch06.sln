@@ -1,0 +1,18 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{6870E480-7721-4708-BFB8-9AE898AA21B3}") = "Ch06", "Ch06\Ch06.smproj", "{8A85B5CC-E10D-49AA-954F-050E6CDE92F9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|x86 = Development|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8A85B5CC-E10D-49AA-954F-050E6CDE92F9}.Development|x86.ActiveCfg = Development|x86
+		{8A85B5CC-E10D-49AA-954F-050E6CDE92F9}.Development|x86.Build.0 = Development|x86
+		{8A85B5CC-E10D-49AA-954F-050E6CDE92F9}.Development|x86.Deploy.0 = Development|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

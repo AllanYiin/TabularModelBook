@@ -1,0 +1,36 @@
+D:\SQL Server 2012 商業智慧2.0\專案範例\Ch05\Ch05\bin\Model.asdatabase
+D:\SQL Server 2012 商業智慧2.0\專案範例\Ch05\Ch05\bin\Model.deploymenttargets
+D:\SQL Server 2012 商業智慧2.0\專案範例\Ch05\Ch05\bin\Model.deploymentoptions
+D:\SQL Server 2012 商業智慧2.0\專案範例\Ch05\Ch05\obj\Development\Model.asdatabase
+D:\SQL Server 2012 商業智慧2.0\專案範例\Ch05\Ch05\obj\Development\Model.deploymentoptions
+D:\SQL Server 2012 商業智慧2.0\專案範例\Ch05\Ch05\obj\Development\Model.deploymenttargets
+D:\SQL Server 2012 商業智慧2.0\專案範例\Ch05_SQL2012SP1\Ch05\bin\Model.asdatabase
+D:\SQL Server 2012 商業智慧2.0\專案範例\Ch05_SQL2012SP1\Ch05\bin\Model.deploymenttargets
+D:\SQL Server 2012 商業智慧2.0\專案範例\Ch05_SQL2012SP1\Ch05\bin\Model.deploymentoptions
+D:\SQL Server 2012 商業智慧2.0\專案範例\Ch05_SQL2012SP1\Ch05\obj\Development\Model.asdatabase
+D:\SQL Server 2012 商業智慧2.0\專案範例\Ch05_SQL2012SP1\Ch05\obj\Development\Model.deploymentoptions
+D:\SQL Server 2012 商業智慧2.0\專案範例\Ch05_SQL2012SP1\Ch05\obj\Development\Model.deploymenttargets
+G:\SQL Server 2012 商業智慧2.0\專案範例\Ch05_SQL2012SP1\Ch05\bin\Model.asdatabase
+G:\SQL Server 2012 商業智慧2.0\專案範例\Ch05_SQL2012SP1\Ch05\bin\Model.deploymenttargets
+G:\SQL Server 2012 商業智慧2.0\專案範例\Ch05_SQL2012SP1\Ch05\bin\Model.deploymentoptions
+G:\SQL Server 2012 商業智慧2.0\專案範例\Ch05_SQL2012SP1\Ch05\obj\Development\Model.asdatabase
+G:\SQL Server 2012 商業智慧2.0\專案範例\Ch05_SQL2012SP1\Ch05\obj\Development\Model.deploymentoptions
+G:\SQL Server 2012 商業智慧2.0\專案範例\Ch05_SQL2012SP1\Ch05\obj\Development\Model.deploymenttargets
+D:\SQL Server 2012 商業智慧2.0\專案範例\Ch05_SQL2012SP1 - 複製\Ch05\bin\Model.asdatabase
+D:\SQL Server 2012 商業智慧2.0\專案範例\Ch05_SQL2012SP1 - 複製\Ch05\bin\Model.deploymenttargets
+D:\SQL Server 2012 商業智慧2.0\專案範例\Ch05_SQL2012SP1 - 複製\Ch05\bin\Model.deploymentoptions
+D:\SQL Server 2012 商業智慧2.0\專案範例\Ch05_SQL2012SP1 - 複製\Ch05\obj\Development\Model.asdatabase
+D:\SQL Server 2012 商業智慧2.0\專案範例\Ch05_SQL2012SP1 - 複製\Ch05\obj\Development\Model.deploymentoptions
+D:\SQL Server 2012 商業智慧2.0\專案範例\Ch05_SQL2012SP1 - 複製\Ch05\obj\Development\Model.deploymenttargets
+G:\SQL Server 2012 商業智慧2.0\專案範例\Ch05\Ch05\bin\Model.asdatabase
+G:\SQL Server 2012 商業智慧2.0\專案範例\Ch05\Ch05\bin\Model.deploymenttargets
+G:\SQL Server 2012 商業智慧2.0\專案範例\Ch05\Ch05\bin\Model.deploymentoptions
+G:\SQL Server 2012 商業智慧2.0\專案範例\Ch05\Ch05\obj\Development\Model.asdatabase
+G:\SQL Server 2012 商業智慧2.0\專案範例\Ch05\Ch05\obj\Development\Model.deploymentoptions
+G:\SQL Server 2012 商業智慧2.0\專案範例\Ch05\Ch05\obj\Development\Model.deploymenttargets
+D:\SkyDrive\出版\SQL Server 2012 商業智慧2.0\範例\Ch05\Ch05\bin\Model.asdatabase
+D:\SkyDrive\出版\SQL Server 2012 商業智慧2.0\範例\Ch05\Ch05\bin\Model.deploymenttargets
+D:\SkyDrive\出版\SQL Server 2012 商業智慧2.0\範例\Ch05\Ch05\bin\Model.deploymentoptions
+D:\SkyDrive\出版\SQL Server 2012 商業智慧2.0\範例\Ch05\Ch05\obj\Development\Model.asdatabase
+D:\SkyDrive\出版\SQL Server 2012 商業智慧2.0\範例\Ch05\Ch05\obj\Development\Model.deploymenttargets
+D:\SkyDrive\出版\SQL Server 2012 商業智慧2.0\範例\Ch05\Ch05\obj\Development\Model.deploymentoptions
